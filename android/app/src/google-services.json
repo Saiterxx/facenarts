@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815161465931",
+    "project_id": "facenarts",
+    "storage_bucket": "facenarts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815161465931:android:cc4f4b2f98a292f25b81ce",
+        "android_client_info": {
+          "package_name": "com.saiterxx.facenarts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815161465931-uar6f6eqghmu6la55n4v7coud9m90vlb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu3ASe7_uoVkK-vGv5uknd4fUa97mxVW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815161465931-uar6f6eqghmu6la55n4v7coud9m90vlb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
