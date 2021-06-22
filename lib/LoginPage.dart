@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
   }
     return Scaffold(
         appBar: AppBar(
-          title: Text("Firebase Auth"),
+          title: Text("FacenArts"),
         ),
         body: myFirebaseForm());
   }
