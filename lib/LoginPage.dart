@@ -1,3 +1,4 @@
+import 'package:facenarts/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -21,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           //1.)
           TextField(
-            decoration: InputDecoration(hintText: "Email"),
+            decoration: InputDecoration(icon: Icon(Icons.person),hintText: "Email"),
             onChanged: (value) {
               setState(() {
                 _email = value.trim(); //remove whitespace
@@ -30,7 +31,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           //2.)
           TextField(
-            decoration: InputDecoration(hintText: "Password"),
+            obscureText: true,
+            decoration: InputDecoration( icon: Icon(Icons.lock),hintText: "Password"),
             onChanged: (value) {
               setState(() {
                 _password = value.trim(); //remove whitespace
@@ -49,11 +51,15 @@ class _LoginPageState extends State<LoginPage> {
                         // ignore: unnecessary_null_comparison
                         if(authUser!=null){
                           print(authUser);
-                          print("Login Success");
+                          print("Sucesso no Login");
                           Navigator.of(context).pushNamed("/logged");
+                          ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(
+                        'Bem vindo(a) de volta!'
+                      )));
                         }
                         else{
-                          print("Login Error");
+                          print("Erro no Login ");
                         }
 
                       } on FirebaseAuthException catch (e) {
@@ -64,13 +70,18 @@ class _LoginPageState extends State<LoginPage> {
           //4.)
           // ignore: deprecated_member_use
           RaisedButton(
-              child: Text("Sign-Up"),
+              child: Text("Registrar"),
               onPressed: () {
                 try {
                   auth.createUserWithEmailAndPassword(
                       email: _email, password: _password);
+                      addName(_email);
+                      ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(
+                        'Registrado com sucesso!'
+                      )));
                 } catch (e) {
-                  print("Error on signup " + e.toString());
+                  print("Erro ao se registrar " + e.toString());
                 }
               })
 
@@ -83,6 +94,10 @@ class _LoginPageState extends State<LoginPage> {
           title: Text("FacenArts"),
         ),
         body: myFirebaseForm());
+  }
+
+  Future addName(String _email) async{
+    await DatabaseService(_email).updateUserData(_email);
   }
 
 
