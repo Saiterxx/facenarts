@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoggedInPage extends StatelessWidget {
   final auth = FirebaseAuth.instance;
-
-  @override
   
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
