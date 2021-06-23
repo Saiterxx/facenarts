@@ -31,16 +31,16 @@ class LoggedInPage extends StatelessWidget {
 
   Widget myList() {
     String? email = auth.currentUser!.email.toString();
-  return Expanded(
-    child: StreamBuilder<QuerySnapshot>(
+  return (
+     StreamBuilder<QuerySnapshot>(
         stream:
             FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).snapshots(),
         builder:
             (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new Text("No documents");
           return new ListView(children: getListItems(snapshot));
-        }),
-  );
+        }));
+  
 }
 
 getListItems(AsyncSnapshot<QuerySnapshot> snapshot) {
