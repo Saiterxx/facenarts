@@ -42,7 +42,7 @@ class LoggedInPage extends StatelessWidget {
             FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).limit(1).snapshots(),
         builder:
             (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return new Text("No documents");
+          if (!snapshot.hasData) return new Text("Carregando Documentos...");
           return new ListView(children: getListItems(snapshot));
         }));
   

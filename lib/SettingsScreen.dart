@@ -11,6 +11,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   late String _newusername;
   final auth = FirebaseAuth.instance;
 
+
   @override
   Widget build(BuildContext context) {
 
@@ -39,9 +40,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       try {
                         // ignore: unnecessary_null_comparison
                         if(auth!=null){
-                          print(auth.currentUser!.email.toString());
-                          addName(_newusername, auth.currentUser!.email.toString());
+                          print('pog');
 
+                          addName(_newusername, auth.currentUser!.email.toString());
+                           
                           Navigator.of(context).pushNamed("/logged");
                           ScaffoldMessenger.of(context)
                         .showSnackBar(SnackBar(content: Text(
