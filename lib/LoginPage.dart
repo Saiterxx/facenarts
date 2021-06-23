@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future addName(String _email) async{
-    await DatabaseService(_email).updateUserData(_email);
+    await DatabaseService(_email).updateUserData(_email, _email);
   }
 
 
