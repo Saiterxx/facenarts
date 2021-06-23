@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'LoggedInPage.dart';
 import 'LoginPage.dart';
+import 'SettingsScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => LoginPage(),
         '/logged': (context) => LoggedInPage(),
+        '/settings': (context) => SettingsScreen(),
       },
     );
   }

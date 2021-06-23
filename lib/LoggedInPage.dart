@@ -12,18 +12,23 @@ class LoggedInPage extends StatelessWidget {
         appBar: AppBar(
         title: Text("FacenArts"),
         actions: [
+          IconButton(icon: Icon(Icons.settings), onPressed: () async {
+              Navigator.of(context).pushNamed("/settings");
+            }
+            ,
+        ),
           IconButton(icon: Icon(Icons.exit_to_app), onPressed: () async {
               print("User BEFORE Log-Out -> " + auth.currentUser!.email.toString());
               await auth.signOut();
               print("User AFTER Log-Out -> " + auth.currentUser.toString());
-
               Navigator.of(context).pushNamed("/");
             }
             ,
         )]),
+        
         body: Center(
+        
         child: myList()
-          
   ),
   );
     
@@ -34,7 +39,7 @@ class LoggedInPage extends StatelessWidget {
   return (
      StreamBuilder<QuerySnapshot>(
         stream:
-            FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).snapshots(),
+            FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).limit(1).snapshots(),
         builder:
             (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new Text("No documents");
