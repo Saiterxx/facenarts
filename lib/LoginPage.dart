@@ -15,22 +15,24 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
 
     Widget myFirebaseForm() {
-    return Center(
-      child: Column(
+    return Center( 
+      child: Column( 
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //1.)
-          TextField(
+          Card(
+          child: TextField(
             decoration: InputDecoration(icon: Icon(Icons.person),hintText: "Email"),
             onChanged: (value) {
               setState(() {
                 _email = value.trim(); //remove whitespace
               });
             },
-          ),
+          ),),
           //2.)
-          TextField(
+          Card(
+          child: TextField(
             obscureText: true,
             decoration: InputDecoration( icon: Icon(Icons.lock),hintText: "Password"),
             onChanged: (value) {
@@ -38,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 _password = value.trim(); //remove whitespace
               });
             },
-          ),
+          ),),
 
           //3.)
           // ignore: deprecated_member_use

@@ -14,27 +14,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+const Card(
+  child: Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Text('Hello World!'),
+  ),
+);
     Widget myFirebaseForm() {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
+      
+        child: Column( 
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           //1.)
-          Text('Insira seu novo nome de usuário'),
-          TextField(
-            decoration: InputDecoration(icon: Icon(Icons.person),hintText: ""),
+          Card(
+           child: ListTile(
+
+          title: new Text('Insira seu novo nome de usuário', textAlign: TextAlign.center,), )
+          ),
+          Card(
+            child: 
+
+           TextField(
+            decoration: InputDecoration(
+            icon: Icon(Icons.person),hintText: ""),
             onChanged: (value) {
               setState(() {
                 _newusername = value.trim(); //remove whitespace
               });
             },
           ),
-          //2.)
-          //3.)
           // ignore: deprecated_member_use
-          RaisedButton(
+          ),RaisedButton(
                     child: Text("Atualizar"),
                     onPressed: () async {
                       try {
@@ -62,13 +74,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
           //4.)
           // ignore: deprecated_member_use
         ],
+        
       ),
+      
     );
+    
   }
     return Scaffold(
         appBar: AppBar(
-          title: Text("FacenArts"),
-        ),
+        title: Text("FacenArts"),
+        actions: [
+          IconButton(icon: Icon(Icons.exit_to_app), onPressed: () async {
+              print("User BEFORE Log-Out -> " + auth.currentUser!.email.toString());
+              await auth.signOut();
+              print("User AFTER Log-Out -> " + auth.currentUser.toString());
+              Navigator.of(context).pushNamed("/");
+            }
+            ,
+        )]),
         body: myFirebaseForm());
   }
 

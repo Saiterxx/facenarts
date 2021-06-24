@@ -9,6 +9,7 @@ class LoggedInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         appBar: AppBar(
         title: Text("FacenArts"),
         actions: [
@@ -29,6 +30,7 @@ class LoggedInPage extends StatelessWidget {
         body: Center(
         
         child: myList()
+
   ),
   );
     
@@ -39,21 +41,22 @@ class LoggedInPage extends StatelessWidget {
   return (
      StreamBuilder<QuerySnapshot>(
         stream:
-            FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).limit(1).snapshots(),
+            FirebaseFirestore.instance.collection("users").where('Email', isEqualTo: email).snapshots(),
         builder:
             (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) return new Text("Carregando Documentos...");
-          return new ListView(children: getListItems(snapshot));
+          return new ListView(padding: const EdgeInsets.fromLTRB(50, 100, 50, 100),children: getListItems(snapshot));
         }));
   
 }
 
 getListItems(AsyncSnapshot<QuerySnapshot> snapshot) {
   return snapshot.data!.docs
-      .map((doc) => new ListTile(
+      .map<Widget>((doc) =>  Card(
+            child: ListTile(
+
             leading: CircleAvatar(radius: 25),
-            title: new Text(doc["Username"]),
-          ))
+            title: new Text('Nome de usuário: \n'+ doc["Username"]),)),)
       .toList();
 }
 
